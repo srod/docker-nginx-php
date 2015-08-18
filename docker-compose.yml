@@ -1,0 +1,21 @@
+web:
+  build: docker/nginx
+  ports:
+    - "8080:80"
+  links:
+    - php
+  volumes:
+    - "./app:/usr/share/nginx/html"
+php:
+  build: docker/php
+  links:
+    - db
+  volumes:
+    - "./app:/usr/share/nginx/html"
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: 123456
+    MYSQL_USER: dev
+    MYSQL_PASSWORD: 123456
+    MYSQL_DATABASE: myapp
