@@ -1,5 +1,5 @@
 web:
-  build: docker/nginx
+  image: srod/nginx
   ports:
     - "8080:80"
   links:
@@ -7,7 +7,7 @@ web:
   volumes:
     - "./app:/usr/share/nginx/html"
 php:
-  build: docker/php
+  image: srod/php-fpm
   links:
     - db
   volumes:
